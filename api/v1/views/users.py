@@ -26,7 +26,7 @@ def get_users():
 @app_views.route('/users/<user_id>', methods=['GET'])
 def get_user(user_id):
     """Retrieve a user object by id """
-    user = storage.get(User, amenity_id)
+    user = storage.get(User, user_id)
     if user is None:
         abort(404)
     return jsonify(user.to_dict())
@@ -69,7 +69,7 @@ def update_user(user_id):
 
 @app_views.route('/users/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
-    user = storage.get(User, amenity_id)
+    user = storage.get(User, user_id)
     if user is None:
         abort(404)
     storage.delete(user)

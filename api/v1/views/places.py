@@ -6,6 +6,7 @@ import models
 from models import storage
 from models.place import Place
 from models.city import City
+from models.user import User
 from models.state import State
 from flask import jsonify, abort, request, make_response
 from api.v1.views import app_views
@@ -15,7 +16,7 @@ from api.v1.views import app_views
         '/cities/<city_id>/places', methods=['GET'], strict_slashes=False)
 def get_places(city_id):
     """ Retrieves the list of all Place objects """
-    city = models.storage.get(City, state_id)
+    city = models.storage.get(City, city_id)
     if city is None:
         abort(404)
     places = storage.all(Place)
@@ -34,61 +35,67 @@ def get_places(city_id):
         placeList.append(place.to_dict())
     return jsonify(placeList)
 
-"""
-@app_views.route('/cities/<city_id>', methods=['GET'])
-def get_city(city_id):
-#Retrieve a city object by id
-    city = storage.get(City, city_id)
-    if city is None:
+
+@app_views.route('/places/<place_id>', methods=['GET'])
+def get_place(place_id):
+    """ Retrieve a place object by id """
+    place = storage.get(Place, place_id)
+    if place is None:
         abort(404)
-    return jsonify(city.to_dict())
+    return jsonify(place.to_dict())
 
 
-@app_views.route('/states/<state_id>/cities', methods=['POST'])
-def create_city(state_id):
-    #Create a new instance of state
+@app_views.route('/cities/<city_id>/places', methods=['POST'])
+def create_place(city_id):
+    """ Create a new instance of state """
     if not request.json:
         abort(404, description='Not a JSON')
-    state = storage.get(State, state_id)
-    if state is None:
+    city = storage.get(City, city_id)
+    if city is None:
         abort(404)
     if 'name' not in request.json:
         abort(404, description='Missing name')
+    if 'user_id' not in request.json:
+        abort(404, description='Missing user_id')
+    #user = storage.get(User, user_id
+    data = request.get_json()
+    data['city_id'] = city_id
+    user_id = data['user_id']
+    user = storage.get(User, user_id)
+    if user is None:
+        abort(404)
 
-    city = request.get_json()
-    city['state_id'] = state_id
-    new_city = City(**city)  # initialized as kwargs
-    new_city.save()
+    new_place = Place(**data)  # initialized as kwargs
+    new_place.save()
     # return make_response(jsonify(new_state.to_dict()), 201)
     # both works
-    return (jsonify(new_city.to_dict()), 201)
+    return (jsonify(new_place.to_dict()), 201)
 
 
-@app_views.route('/cities/<city_id>', methods=['PUT'])
-def update_city(city_id):
-"
-    #Updates the attribute of a state object
-    city = storage.get(City, city_id)
-    if city is None:
+@app_views.route('/places/<place_id>', methods=['PUT'])
+def update_place(place_id):
+    """ Updates the attribute of a state object """
+    place = storage.get(Place, place_id)
+    if place is None:
         abort(404)
     if not request.json:
-        abort(404, description='Not a JSON')
-    cityAttr = request.get_json()
-    for key, value in cityAttr.items():
-        if key != 'id' or 'created_at' or 'updated_at':
+        abort(400, description='Not a JSON')
+    placeAttr = request.get_json()
+    for key, value in placeAttr.items():
+        if key not in \
+        {'id', 'created_at', 'updated_at', 'user_id', 'city_id'}:
             # for k, v in cityAttr.items():
-            setattr(city, key, value)
-    city.save()
-    return jsonify(city.to_dict()), 200
+            setattr(place, key, value)
+    place.save()
+    return jsonify(place.to_dict()), 200
 
 
-@app_views.route('/cities/<city_id>', methods=['DELETE'])
-def delete_city(city_id):
+@app_views.route('/places/<place_id>', methods=['DELETE'])
+def delete_place(place_id):
 
-    city = storage.get(City, city_id)
-    if city is None:
+    place = storage.get(Place, place_id)
+    if place is None:
         abort(404)
-    storage.delete(city)
+    storage.delete(place)
     storage.save()
     return (jsonify({}), 200)
-"""
