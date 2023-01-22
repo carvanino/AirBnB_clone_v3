@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-city api Module
+Amenity api Module
 """
 import models
 from models import storage
@@ -36,11 +36,9 @@ def get_amenity(amenity_id):
 def create_amenity():
     """ Create a new instance of Amenity """
     if not request.json:
-        print("OK!")
-        abort(404, description='Not a JSON')
+        abort(400, description='Not a JSON')
     if 'name' not in request.json:
-        print("OK")
-        abort(404, description='Missing name')
+        abort(400, description='Missing name')
     amenityAttr = request.get_json()
     new_amenity = Amenity(**amenityAttr)  # initialized as kwargs
     print(new_amenity)
@@ -57,10 +55,10 @@ def update_amenity(amenity_id):
     if amenity is None:
         abort(404)
     if not request.json:
-        abort(404, description='Not a JSON')
+        abort(400, description='Not a JSON')
     amenityAttr = request.get_json()
     for key, value in amenityAttr.items():
-        if key != 'id' or 'created_at' or 'updated_at':
+        if key not in {'id', 'created_at', 'updated_at'}:
             setattr(amenity, key, value)
     amenity.save()
     return jsonify(amenity.to_dict()), 200

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-city api Module
+Place api Module
 """
 import models
 from models import storage
@@ -54,10 +54,10 @@ def create_place(city_id):
     if city is None:
         abort(404)
     if 'name' not in request.json:
-        abort(404, description='Missing name')
+        abort(400, description='Missing name')
     if 'user_id' not in request.json:
-        abort(404, description='Missing user_id')
-    #user = storage.get(User, user_id
+        abort(400, description='Missing user_id')
+    # user = storage.get(User, user_id
     data = request.get_json()
     data['city_id'] = city_id
     user_id = data['user_id']
@@ -83,7 +83,7 @@ def update_place(place_id):
     placeAttr = request.get_json()
     for key, value in placeAttr.items():
         if key not in \
-        {'id', 'created_at', 'updated_at', 'user_id', 'city_id'}:
+                {'id', 'created_at', 'updated_at', 'user_id', 'city_id'}:
             # for k, v in cityAttr.items():
             setattr(place, key, value)
     place.save()

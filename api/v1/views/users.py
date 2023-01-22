@@ -25,7 +25,7 @@ def get_users():
 
 @app_views.route('/users/<user_id>', methods=['GET'])
 def get_user(user_id):
-    """Retrieve a user object by id """
+    """ Retrieve a user object by id """
     user = storage.get(User, user_id)
     if user is None:
         abort(404)
@@ -36,10 +36,8 @@ def get_user(user_id):
 def create_user():
     """ Create a new instance of User """
     if not request.json:
-        print("OK")
         abort(400, description='Not a JSON')
     if 'email' not in request.json:
-        print("OK!")
         abort(400, description='Missing email')
     if 'password' not in request.json:
         abort(400, description='Missing password')
@@ -58,10 +56,10 @@ def update_user(user_id):
     if user is None:
         abort(404)
     if not request.json:
-        abort(404, description='Not a JSON')
+        abort(400, description='Not a JSON')
     userAttr = request.get_json()
     for key, value in userAttr.items():
-        if key != 'id' or 'created_at' or 'updated_at':
+        if key not in {'id', 'created_at', 'updated_at'}:
             setattr(user, key, value)
     user.save()
     return jsonify(user.to_dict()), 200
