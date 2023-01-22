@@ -17,6 +17,7 @@ def teardown_session(exception):
     """closes storage"""
     storage.close()
 
+
 @app.errorhandler(404)
 def not_found(error):
     """ Page not found error handler """
