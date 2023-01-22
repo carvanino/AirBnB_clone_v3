@@ -77,6 +77,16 @@ class DBStorage:
 
     def get(self, cls, id):
         """ Retrieves an object by id """
+        cls = eval(cls) if cls is str else cls
+        for clss in classes:
+            obj = self.__session.query(classes[clss]).all()
+            for objj in obj:
+                if objj.id == id:
+                    return objj
+        return None
+
+
+        """
         for clss in classes.values():
             if cls == clss:
                 key = "{}.{}".format(cls.__name__, id)
@@ -86,6 +96,7 @@ class DBStorage:
         for clss in clsList:
             if key in clsList:
                 return clsList[key]
+        """
 
     def count(self, cls=None):
         """ Counts the number of objects in storage """

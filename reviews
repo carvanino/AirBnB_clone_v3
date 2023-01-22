@@ -1,0 +1,74 @@
+[
+  {
+    "__class__": "Review", 
+    "created_at": "2017-03-25T02:17:07.000000", 
+    "id": "6af9152c-e0d7-41fb-95be-b5bfa5bcf432", 
+    "place_id": "e990e07f-1b6f-4bc5-a553-ddddad30211b", 
+    "text": "Really enjoyed our stay.  Loved sitting out on the front porch enjoying the nice weather we had during our visit to Birmingham.  Thanks Suzy", 
+    "updated_at": "2017-03-25T02:17:07.000000", 
+    "user_id": "df668e22-e344-4c89-a050-e5ad211cbaa6"
+  }, 
+  {
+    "__class__": "Review", 
+    "created_at": "2017-03-25T02:17:07.000000", 
+    "id": "7620823e-8fbe-4bb4-9c66-c81d0434c65b", 
+    "place_id": "e990e07f-1b6f-4bc5-a553-ddddad30211b", 
+    "text": " Susie was easy to work with. The kitchen was the best part of the home. ", 
+    "updated_at": "2017-03-25T02:17:07.000000", 
+    "user_id": "9eec6c06-5918-4867-833a-face490d4715"
+  }, 
+  {
+    "__class__": "Review", 
+    "created_at": "2017-03-25T02:17:07.000000", 
+    "id": "817fda18-eff6-43a7-ac2b-33d3918073a4", 
+    "place_id": "e990e07f-1b6f-4bc5-a553-ddddad30211b", 
+    "text": "Four of us stayed a couple days for work. The house is clean, safe and comfortable. Much better than a hotel. Thanks Suzy.", 
+    "updated_at": "2017-03-25T02:17:07.000000", 
+    "user_id": "426624f6-84a9-4ec4-84f3-7655dc70e86e"
+  }, 
+  {
+    "__class__": "Review", 
+    "created_at": "2017-03-25T02:17:07.000000", 
+    "id": "9520fa62-6eb4-4220-b3c3-d7b2244fb22a", 
+    "place_id": "e990e07f-1b6f-4bc5-a553-ddddad30211b", 
+    "text": "Great home and host! The porch is absolutely wonderful with a great view of downtown Birmingham at night. On a quiet street. Would definitely recommend! ", 
+    "updated_at": "2017-03-25T02:17:07.000000", 
+    "user_id": "7771bbe9-92ab-46d1-a636-864526361d7d"
+  }, 
+  {
+    "__class__": "Review", 
+    "created_at": "2023-01-21T23:07:07.000000", 
+    "id": "a01f19e2-fa55-49d9-bdab-182ceec1947a", 
+    "place_id": "e990e07f-1b6f-4bc5-a553-ddddad30211b", 
+    "text": "Edit: a friend just gave a great review of the place, seems to be a great place", 
+    "updated_at": "2023-01-21T23:09:11.000000", 
+    "user_id": "3fda0d5c-fea4-4920-bc91-6e6c6663d161"
+  }, 
+  {
+    "__class__": "Review", 
+    "created_at": "2017-03-25T02:17:07.000000", 
+    "id": "a27f42d2-d833-4ce6-8913-56866fb45593", 
+    "place_id": "e990e07f-1b6f-4bc5-a553-ddddad30211b", 
+    "text": "Great place - we came on a business trip and had plenty of space to work together while being able to have some privacy. Beautiful view of the city at night on a gorgeous porch. Suzy is an easy host to work with and we're hoping to be back in BHM soon!", 
+    "updated_at": "2017-03-25T02:17:07.000000", 
+    "user_id": "aa92d1ff-f0ad-4ba3-9c20-2afef207bf70"
+  }, 
+  {
+    "__class__": "Review", 
+    "created_at": "2023-01-21T23:06:49.000000", 
+    "id": "a8133c0f-f99e-4c67-8d08-da7be0a2397d", 
+    "place_id": "e990e07f-1b6f-4bc5-a553-ddddad30211b", 
+    "text": "Im not sure if this place was great because I stayed for a short time", 
+    "updated_at": "2023-01-21T23:06:49.000000", 
+    "user_id": "3fda0d5c-fea4-4920-bc91-6e6c6663d161"
+  }, 
+  {
+    "__class__": "Review", 
+    "created_at": "2017-03-25T02:17:07.000000", 
+    "id": "ba2023bd-0ac1-4a69-bf49-8faaa4ca1669", 
+    "place_id": "e990e07f-1b6f-4bc5-a553-ddddad30211b", 
+    "text": "Wonderful home that really helped make our trip. Especially enjoyed the porch! ", 
+    "updated_at": "2017-03-25T02:17:07.000000", 
+    "user_id": "00e93fc3-53ff-4da4-8e72-faa5216f81bb"
+  }
+]
