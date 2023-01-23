@@ -48,7 +48,7 @@ def get_place(place_id):
 def create_place(city_id):
     """ Create a new instance of state """
     if not request.json:
-        abort(404, description='Not a JSON')
+        abort(400, description='Not a JSON')
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
@@ -78,7 +78,7 @@ def update_place(place_id):
     if place is None:
         abort(404)
     if not request.json:
-        abort(404, description='Not a JSON')
+        abort(400, description='Not a JSON')
     placeAttr = request.get_json()
     for key, value in placeAttr.items():
         if key not in \
