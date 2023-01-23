@@ -16,6 +16,14 @@ def get_placeAmenities(place_id):
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
+    if environ.get('HBNB_TYPE_STORAGE') == "db":
+        amenities = [amenity.to_dict() for amenity in place.amenities]
+    else:
+        amenities = [storage.get(Amenity, amenity_id).to_dict()
+                     for amenity_id in place.amenity_ids]
+
+    return jsonify(amenities)
+    """
     amenityList = []
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         amenities = place.amenities
@@ -28,6 +36,7 @@ def get_placeAmenities(place_id):
             amenity = storage.get(Amenity, amenity_id)
             amenityList.append(amenity.to_dict())
     return jsonify(amenityList)
+    """
 
 
 @app_views.route('/places/<place_id>/amenities/<amenity_id>', methods=['POST'])
