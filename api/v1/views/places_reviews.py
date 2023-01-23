@@ -11,8 +11,7 @@ from flask import jsonify, abort, request, make_response
 from api.v1.views import app_views
 
 
-@app_views.route(
-        '/places/<place_id>/reviews', methods=['GET'], strict_slashes=False)
+@app_views.route('/places/<place_id>/reviews', methods=['GET'])
 def get_reviews(place_id):
     """ Retrieves the list of all Review objects of a Place"""
     reviews = storage.all(Review)
@@ -67,7 +66,7 @@ def update_review(review_id):
     if review is None:
         abort(404)
     if not request.json:
-        abort(404, description='Not a JSON')
+        abort(400, description='Not a JSON')
     reviewAttr = request.get_json()
     for key, value in reviewAttr.items():
         if key not in \
@@ -79,6 +78,7 @@ def update_review(review_id):
 
 @app_views.route('/reviews/<review_id>', methods=['DELETE'])
 def delete_review(review_id):
+    """ Deletes a review object """
     review = storage.get(Review, review_id)
     if review is None:
         abort(404)
