@@ -12,7 +12,8 @@ from flask import jsonify, abort, request, make_response
 from api.v1.views import app_views
 
 
-@app_views.route('/cities/<city_id>/places', methods=['GET'], strict_slashes=False)
+@app_views.route(
+        '/cities/<city_id>/places', methods=['GET'], strict_slashes=False)
 def get_places(city_id):
     """ Retrieves the list of all Place objects """
     city = models.storage.get(City, city_id)
@@ -44,7 +45,8 @@ def get_place(place_id):
     return jsonify(place.to_dict())
 
 
-@app_views.route('/cities/<city_id>/places', methods=['POST'], strict_slashes=False)
+@app_views.route(
+        '/cities/<city_id>/places', methods=['POST'], strict_slashes=False)
 def create_place(city_id):
     """ Create a new instance of state """
     if not request.json:
@@ -89,7 +91,8 @@ def update_place(place_id):
     return jsonify(place.to_dict()), 200
 
 
-@app_views.route('/places/<place_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route(
+        '/places/<place_id>', methods=['DELETE'], strict_slashes=False)
 def delete_place(place_id):
 
     place = storage.get(Place, place_id)
