@@ -50,7 +50,7 @@ def get_place(place_id):
 def create_place(city_id):
     """ Create a new instance of state """
     if not request.json:
-        abort(404, description='Not a JSON')
+        abort(400, description='Not a JSON')
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
@@ -94,7 +94,7 @@ def update_place(place_id):
 @app_views.route(
         '/places/<place_id>', methods=['DELETE'])
 def delete_place(place_id):
-
+    """ Deletes a place """
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
