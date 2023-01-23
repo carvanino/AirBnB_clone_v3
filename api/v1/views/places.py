@@ -36,7 +36,7 @@ def get_places(city_id):
     return jsonify(placeList)
 
 
-@app_views.route('/places/<place_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/places/<place_id>', methods=['GET'])
 def get_place(place_id):
     """ Retrieve a place object by id """
     place = storage.get(Place, place_id)
@@ -46,11 +46,11 @@ def get_place(place_id):
 
 
 @app_views.route(
-        '/cities/<city_id>/places', methods=['POST'], strict_slashes=False)
+        '/cities/<city_id>/places', methods=['POST'])
 def create_place(city_id):
     """ Create a new instance of state """
     if not request.json:
-        abort(400, description='Not a JSON')
+        abort(404, description='Not a JSON')
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
@@ -73,7 +73,7 @@ def create_place(city_id):
     return (jsonify(new_place.to_dict()), 201)
 
 
-@app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/places/<place_id>', methods=['PUT'])
 def update_place(place_id):
     """ Updates the attribute of a state object """
     place = storage.get(Place, place_id)
@@ -92,7 +92,7 @@ def update_place(place_id):
 
 
 @app_views.route(
-        '/places/<place_id>', methods=['DELETE'], strict_slashes=False)
+        '/places/<place_id>', methods=['DELETE'])
 def delete_place(place_id):
 
     place = storage.get(Place, place_id)
