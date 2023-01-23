@@ -7,17 +7,19 @@ from models import storage
 from models.place import Place
 from models.city import City
 from models.user import User
+from models.state import State
 from flask import jsonify, abort, request, make_response
 from api.v1.views import app_views
 
 
-@app_views.route('/cities/<city_id>/places', methods=['GET'])
+@app_views.route(
+        '/cities/<city_id>/places', methods=['GET'], strict_slashes=False)
 def get_places(city_id):
-    """ Retrieves the list of all Place objects of a City """
+    """ Retrieves the list of all Place objects """
     city = models.storage.get(City, city_id)
     if city is None:
         abort(404)
-    # places = storage.all(Place)
+    places = storage.all(Place)
     """
     for city in cities.values():
         city = city.to_dict()
@@ -77,7 +79,7 @@ def update_place(place_id):
     if place is None:
         abort(404)
     if not request.json:
-        abort(404, description='Not a JSON')
+        abort(400, description='Not a JSON')
     placeAttr = request.get_json()
     for key, value in placeAttr.items():
         if key not in \
