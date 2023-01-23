@@ -61,5 +61,5 @@ def delete_placeamenity(place_id, amenity_id):
         if amenity_id in amenity.to_dict().values():
             del amenity
             storage.save()
-            return jsonify({})
+            return jsonify({}), 200
     abort(404)
