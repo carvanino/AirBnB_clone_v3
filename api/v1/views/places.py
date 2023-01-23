@@ -78,7 +78,7 @@ def update_place(place_id):
     if place is None:
         abort(404)
     if not request.json:
-        abort(400, description='Not a JSON')
+        abort(404, description='Not a JSON')
     placeAttr = request.get_json()
     for key, value in placeAttr.items():
         if key not in \
