@@ -49,7 +49,7 @@ def get_place(place_id):
 def create_place(city_id):
     """ Create a new instance of state """
     if not request.json:
-        abort(404, description='Not a JSON')
+        abort(400, description='Not a JSON')
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
