@@ -11,7 +11,7 @@ from flask import jsonify, abort, request, make_response
 from api.v1.views import app_views
 
 
-@app_views.route('/amenities', methods=['GET'], strict_slashes=False)
+@app_views.route('/amenities', methods=['GET'])
 def get_amenities():
     """ Retrieves the list of all Amenity objects """
     amenities = storage.all(Amenity)
